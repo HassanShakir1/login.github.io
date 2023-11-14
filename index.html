@@ -81,7 +81,7 @@
         <form id="login" class="login">
           <h1>Log In</h1>
           <div class="inputbox">
-            <input type="email" placeholder="E-mail" id="email1" />
+            <input type="email" placeholder="E-mail" id="email1"  />
             <i class="bx bxs-envelope"></i>
             <p
               id="emailerror"
@@ -96,7 +96,7 @@
             </p>
           </div>
           <div class="inputbox">
-            <input type="password" placeholder="Password" id="pass1" />
+            <input type="password" placeholder="Password" id="pass1"  />
             <i class="bx bxs-lock-alt" id="icon2" onclick="passlogclc()"></i>
             <p
               id="paserror"
@@ -171,7 +171,6 @@
             document.getElementById("error").style.display = "block";
           } else {
             arr.push(user, email, pass, age.value);
-            console.log(arr);
             document.getElementById("error").style.display = "none";
             sign.style.display = "none";
             log.style.display = "initial";
@@ -207,10 +206,15 @@
         document.getElementById("login").style.display = "none";
       }
       function logclc() {
+        console.log(arr)
         let a = document.getElementById("email").value.toLowerCase();
         let b = document.getElementById("pass").value;
         let c = document.getElementById("email1").value.toLowerCase();
         let d = document.getElementById("pass1").value;
+        if(c ==''){
+         console.log('error')
+        } 
+        else{
         if (c == a) {
           document.getElementById("emailerror").style.display = "none";
           if (b == d) {
@@ -225,6 +229,7 @@
         } else {
           document.getElementById("emailerror").style.display = "initial";
         }
+      }
       }
       function updateLandingH1() {
         let name = document.getElementById("user").value;
