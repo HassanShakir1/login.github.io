@@ -9,32 +9,227 @@
       src="https://kit.fontawesome.com/321bd7016e.js"
       crossorigin="anonymous"
     ></script>
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
   </head>
   <body>
-   <section class="main">
-    <form >
-        <h1>Login</h1>
-        <div class="inputbox">
-            <input type="text" placeholder="Username">
-            <i class='bx bxs-user'></i>
-        </div>
-        <div class="inputbox">
-            <input type="email" placeholder="E-mail">
-            <i class='bx bxs-envelope'></i>
-        </div>
-        <div class="inputbox">
-            <input type="password" placeholder="Password">
-            <i class='bx bxs-lock-alt'></i>
-        </div>
-        <div class="inputbox">
-            <input type="number" placeholder="Age">
-        </div>
-        <button type="submit" class="btn">Sign up</button>
-        <div class="login">
-            <p>Already have an accont? <a href="#">Log in</a></p>
-        </div>
-    </form>
-   </section>
+    <div class="full" id="full">
+      <section class="main">
+        <form id="signup" class="signup">
+          <h1>Sign Up</h1>
+          <div class="inputbox">
+            <input type="text" placeholder="Username" id="user" />
+            <i class="bx bxs-user"></i>
+            <p
+              id="user-error"
+              style="
+                display: none;
+                color: red;
+                text-decoration: none;
+                font-weight: 600;
+              "
+            >
+              Username required
+            </p>
+          </div>
+          <div class="inputbox">
+            <input type="email" placeholder="E-mail" id="email" />
+            <i class="bx bxs-envelope"></i>
+          </div>
+          <div class="inputbox">
+            <input type="password" placeholder="Password" id="pass" />
+            <i class="bx bxs-lock-alt" id="icon1" onclick="passclc()"></i>
+            <p
+              id="error"
+              style="
+                display: none;
+                color: red;
+                text-decoration: none;
+                font-weight: 600;
+              "
+            >
+              Password must be a minimum of 8 letters, must contain an uppercase
+              alphabet, a number, and a special symbol
+            </p>
+          </div>
+          <div class="inputbox">
+            <input type="number" placeholder="Age" id="age" />
+            <p
+              id="error2"
+              style="
+                display: none;
+                color: red;
+                text-decoration: none;
+                font-weight: 600;
+              "
+            >
+              You must be 18 or older
+            </p>
+          </div>
+          <button type="button" class="btn" id="btn" onclick="clc()">
+            Sign up
+          </button>
+          <div class="login">
+            <p>
+              Already have an account?
+              <a href="#" id="haveid" onclick="aclc()">Log in</a>
+            </p>
+          </div>
+        </form>
+        <form id="login" class="login">
+          <h1>Log In</h1>
+          <div class="inputbox">
+            <input type="email" placeholder="E-mail" id="email1" />
+            <i class="bx bxs-envelope"></i>
+            <p
+              id="emailerror"
+              style="
+                display: none;
+                color: red;
+                text-decoration: none;
+                font-weight: 600;
+              "
+            >
+              Invalid E-mail
+            </p>
+          </div>
+          <div class="inputbox">
+            <input type="password" placeholder="Password" id="pass1" />
+            <i class="bx bxs-lock-alt" id="icon2" onclick="passlogclc()"></i>
+            <p
+              id="paserror"
+              style="
+                display: none;
+                color: red;
+                text-decoration: none;
+                font-weight: 600;
+              "
+            >
+              Incorrect Password
+            </p>
+          </div>
+          <button type="button" class="btn" id="btn1" onclick="logclc()">
+            Log In
+          </button>
+          <div class="login">
+            <p>
+              New to Us? <a href="#" id="newbi" onclick="nclc()">Sign Up</a>
+            </p>
+          </div>
+        </form>
+      </section>
+    </div>
+
+    <section class="landing" id="landing">
+      <h1>Welcome</h1>
+      <h1 id="landingh1">sadasd</h1>
+    </section>
+    <script>
+      let arr = [];
+      let clickcount = 0;
+
+      function validateUser() {
+        var userField = document.getElementById("user");
+        var userError = document.getElementById("user-error");
+
+        if (userField.value.trim() === "") {
+          userError.style.display = "block";
+          return false;
+        } else {
+          userError.style.display = "none";
+          return true;
+        }
+      }
+      function validateAge() {
+        var ageField = document.getElementById("age");
+        var error2 = document.getElementById("error2");
+        var age = parseInt(ageField.value);
+
+        if (isNaN(age) || age < 18) {
+          error2.style.display = "block";
+          return false;
+        } else {
+          error2.style.display = "none";
+          return true;
+        }
+      }
+
+      function clc() {
+        let user = document.getElementById("user").value;
+        let email = document.getElementById("email").value.toLowerCase();
+        let pass = document.getElementById("pass").value;
+        let sign = document.getElementById("signup");
+        let log = document.getElementById("login");
+        const passwordRegex =
+          /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$/;
+        if (!validateUser() || !validateAge()) {
+          return;
+        } else {
+          if (!passwordRegex.test(pass)) {
+            document.getElementById("error").style.display = "block";
+          } else {
+            arr.push(user, email, pass, age.value);
+            console.log(arr);
+            document.getElementById("error").style.display = "none";
+            sign.style.display = "none";
+            log.style.display = "initial";
+          }
+        }
+      }
+      function passclc() {
+        clickcount++;
+        if (clickcount % 2 !== 0) {
+          document.getElementById("pass").type = "text";
+          document.getElementById("icon1").style.color = "blue";
+        } else {
+          document.getElementById("pass").type = "password";
+          document.getElementById("icon1").style.color = "white";
+        }
+      }
+      function passlogclc() {
+        clickcount++;
+        if (clickcount % 2 !== 0) {
+          document.getElementById("pass1").type = "text";
+          document.getElementById("icon2").style.color = "blue";
+        } else {
+          document.getElementById("pass1").type = "password";
+          document.getElementById("icon2").style.color = "white";
+        }
+      }
+      function aclc() {
+        document.getElementById("signup").style.display = "none";
+        document.getElementById("login").style.display = "initial";
+      }
+      function nclc() {
+        document.getElementById("signup").style.display = "initial";
+        document.getElementById("login").style.display = "none";
+      }
+      function logclc() {
+        let a = document.getElementById("email").value.toLowerCase();
+        let b = document.getElementById("pass").value;
+        let c = document.getElementById("email1").value.toLowerCase();
+        let d = document.getElementById("pass1").value;
+        if (c == a) {
+          document.getElementById("emailerror").style.display = "none";
+          if (b == d) {
+            document.getElementById("paserror").style.display = "none";
+            document.getElementById("login").style.display = "none";
+            document.getElementById("full").style.display = "none";
+            document.getElementById("landing").style.display = "block";
+            updateLandingH1();
+          } else {
+            document.getElementById("paserror").style.display = "initial";
+          }
+        } else {
+          document.getElementById("emailerror").style.display = "initial";
+        }
+      }
+      function updateLandingH1() {
+        let name = document.getElementById("user").value;
+        document.getElementById("landingh1").innerHTML = name;
+      }
+    </script>
   </body>
 </html>

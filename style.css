@@ -3,7 +3,6 @@
     padding: 0;
     font-family: "Droid Sans", sans-serif;
     box-sizing: border-box;
-    text-transform: capitalize;
     text-decoration: none;
     scroll-behavior: smooth;
   }
@@ -18,7 +17,7 @@
     background-position: center;
     background-repeat: no-repeat;
 } */
-body{
+#full{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -27,14 +26,14 @@ body{
     background-size: cover;
     background-position: center;
 }
-.main{
-    width: 420px;
-    background: transparent;
-    border: 2px solid rgba(255, 255, 255, .5);
-    color: #fff;
-    border-radius: 10px;
-    padding: 30px 40px;
-}
+    .main{
+        width: 420px;
+        background: transparent;
+        border: 2px solid rgba(255, 255, 255, .5);
+        color: #fff;
+        border-radius: 10px;
+        padding: 30px 40px;
+    }
 .main h1{
     font-size: 36px;
     text-align: center;
@@ -98,4 +97,33 @@ body{
 }
 .login p a:hover{
     text-decoration: underline;
+}
+.inputbox p {
+   
+}
+#icon1{
+    cursor: pointer;
+}
+#login{
+    display: none;
+}
+#icon2{
+    cursor: pointer;
+}
+.landing{
+    min-height: 100vh;
+    background: url(./image2.jpg) no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: none;
+    display: flex;
+    justify-content: center;
+}
+.landing h1{
+    text-align: center;
+    color: #fff;
+    text-transform: capitalize;
+    text-decoration: underline;
+    font-size: 65.5px;
+    padding: 10px;
 }
