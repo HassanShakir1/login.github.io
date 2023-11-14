@@ -212,7 +212,8 @@
         let c = document.getElementById("email1").value.toLowerCase();
         let d = document.getElementById("pass1").value;
         if(c ==''){
-         console.log('error')
+          document.getElementById("paserror").style.display = "initial";
+          document.getElementById("emailerror").style.display = "initial";
         } 
         else{
         if (c == a) {
